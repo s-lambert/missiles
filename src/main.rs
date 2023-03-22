@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy_rapier3d::{prelude::*, render::RapierDebugRenderPlugin};
 
 #[derive(States, Default, Debug, PartialEq, Eq, Hash, Copy, Clone)]
 pub enum GameState {
@@ -20,6 +21,12 @@ fn main() {
                     ..default()
                 }),
         )
+        .insert_resource(RapierConfiguration {
+            gravity: Vect::new(0.0, 0.0, 0.0),
+            ..default()
+        })
+        .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+        .add_plugin(RapierDebugRenderPlugin::default())
         .add_system(bevy::window::close_on_esc)
         .add_state::<GameState>()
         .run();
