@@ -1,5 +1,8 @@
+mod player_plugin;
+
 use bevy::prelude::*;
 use bevy_rapier3d::{prelude::*, render::RapierDebugRenderPlugin};
+use player_plugin::PlayerPlugin;
 
 #[derive(States, Default, Debug, PartialEq, Eq, Hash, Copy, Clone)]
 pub enum GameState {
@@ -27,6 +30,7 @@ fn main() {
         })
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_plugin(RapierDebugRenderPlugin::default())
+        .add_plugin(PlayerPlugin)
         .add_system(bevy::window::close_on_esc)
         .add_state::<GameState>()
         .run();
