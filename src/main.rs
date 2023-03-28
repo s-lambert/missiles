@@ -30,11 +30,11 @@ fn main() {
             gravity: Vect::new(0.0, 0.0, 0.0),
             ..default()
         })
+        .add_state::<GameState>()
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_plugin(RapierDebugRenderPlugin::default())
         .add_plugin(PlayerPlugin)
         .add_plugin(LevelPlugin)
         .add_system(bevy::window::close_on_esc)
-        .add_state::<GameState>()
         .run();
 }
